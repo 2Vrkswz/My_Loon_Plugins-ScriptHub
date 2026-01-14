@@ -1,0 +1,9 @@
+#!name=网上国网
+#!desc=为Scripting网上国网小组件提供接口信息
+#!author=https://t.me/GieGie777
+
+[Script]
+http-request ^https?:\/\/api\.wsgw-rewrite\.com\/electricity\/bill\/all script-path=https://raw.githubusercontent.com/dompling/Script/master/wsgw/index.js, requires-body=true, timeout=60, tag=接口重写
+
+[MITM]
+hostname = api.wsgw-rewrite.com
