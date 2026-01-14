@@ -1,11 +1,11 @@
 /*
 loon-plugin-ipquality
 name: IP质量检测
-desc: 长按节点进行 IP 质量检测
+desc: 原生插件，长按节点检测公网 IP 质量
 icon: https://raw.githubusercontent.com/你的仓库/logo.png
 author: Niko Rubby
 version: 1.0
-输入: plugin
+type: plugin
 action:
   name: 检测 IP 质量
   icon: https://raw.githubusercontent.com/你的仓库/logo.png
@@ -14,27 +14,33 @@ action:
 */
 
 async function run() {
+  // 弹出加载窗口
+  let win = $window({
+    title: "IP质量检测",
+    message: "正在检测，请稍候...",
+    buttons: ["关闭"]
+  });
+
   try {
-    // 获取当前出口 IP
+    // 1️⃣ 获取节点出口 IP
     let ip = await getPublicIP();
     if (!ip) {
-      $notify("IP质量检测", "无法获取公网 IP", "");
+      win.message = "无法获取公网 IP";
       return;
     }
 
-    // 调用 ippure API
+    // 2️⃣ 调用 ippure.com API
     let apiUrl = `https://ippure.com/api/json/${ip}`;
     let resp = await $httpClient.get(apiUrl);
-
     if (!resp || !resp.body) {
-      $notify("IP质量检测"， "接口返回为空"， "");
+      win.message = "接口返回为空";
       return;
     }
 
     let data = JSON.parse(resp.body);
 
-    // 构造弹窗信息
-    let msg = `
+    // 3️⃣ 构造窗口显示内容
+    win.message = `
 IP: ${ip}
 国家: ${data.country || "未知"}
 省份: ${data.region || "未知"}
@@ -45,10 +51,8 @@ IP类型: ${data.type || "未知"}
 匿名性: ${data.anonymity || "未知"}
 `;
 
-    // 弹窗展示
-    $notify("IP质量检测结果", ""， msg);
   } catch (e) {
-    $notify("IP质量检测"， "执行异常", e.message);
+    win.message = `检测异常：${e.message}`;
     console.log(e);
   }
 }
@@ -57,16 +61,12 @@ IP类型: ${data.type || "未知"}
 async function getPublicIP() {
   try {
     let res = await $httpClient.get("https://api.ipify.org?format=json");
-    if (res && res.body) {
-      return JSON.parse(res.body).ip;
-    }
+    if (res && res.body) return JSON.parse(res.body).ip;
   } catch (e) {
-    console。log("获取公网 IP 失败:", e);
+    console.log("获取公网 IP 失败:", e);
   }
   return null;
 }
 
-// Loon 原生插件入口
-if (typeof $run === "function") {
-  $run(run);
-}
+// 原生插件入口
+if (typeof $run === "function") $run(run);
