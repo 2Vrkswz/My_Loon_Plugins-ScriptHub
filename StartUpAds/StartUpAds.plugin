@@ -1,10 +1,12 @@
-#!name=StartUpAds  
-#!desc=StartUpAds  
-#!icon=https://github.com/Toperlock/Quantumult/raw/main/icon/Doraemon/Doraemon-1020.png  
+#!name=墨鱼去开屏𝐕𝟐.𝟎
+#!desc=去除APP首页启动广告和部分应用内广告
+#!author=@ddgksf2013
+#!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/81/c6/0d/81c60d9a-26eb-b45d-41e7-77eba2e5c9e5/default-0-1x_U007epad-0-1-0-0-sRGB-85-220-0.png/120x120bb.jpg
+#!homepage=https://github.com/2Vrkswz/Pear-vip
   
 [Rule]  
 # > 12306  
-DOMAIN,ad.12306.cn,DIRECT  
+DOMAIN，ad.12306。cn，DIRECT  
 DOMAIN-SUFFIX,shenshiads.com,REJECT  
 # > lexiaotong  
 DOMAIN-SUFFIX,yfanads.com,REJECT  
