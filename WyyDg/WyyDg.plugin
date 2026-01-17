@@ -3,14 +3,9 @@
 #!author=@2Vrkswz
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/e8/01/83/e80183cf-af57-15ff-f6d5-08f1e2f0aea9/AppIcon-1x_U007emarketing-0-9-0-0-85-220-0.png/400x400ia-75.webp
 
-[Rule]
-# 强制将域名划入代理隧道，触发脚本解析
-DOMAIN,wyydg.com,PROXY
-# 如果有 IP 变体，尝试这个
-DOMAIN-SUFFIX,wyydg.com,PROXY
-
 [Script]
-http-response ^https?:\/\/wyydg\.com script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/wyydg.js, requires-body=true, tag=黄白点歌
+# 只要 URL 中包含 wyydg.com 且是请求阶段就拦截
+http-request wyydg.com script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/wyydg.js, requires-body=true, tag=黄白点歌
 
 # 获取网易云 Cookie
 http-request ^https:\/\/interface\d?\.music\.163\.com\/eapi\/vipauth\/app\/memberlogo\/mypage\/query script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/wyyGetCookie.js, requires-body=false, tag=网易云Cookie
