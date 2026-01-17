@@ -1,15 +1,15 @@
 #!name=黄白点歌
-#!desc=基于 wyydg.js + wyyGetCookie.js 原版脚本转换
+#!desc=微信插件黄白助手配套脚本
 #!author=@2Vrkswz
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/e8/01/83/e80183cf-af57-15ff-f6d5-08f1e2f0aea9/AppIcon-1x_U007emarketing-0-9-0-0-85-220-0.png/400x400ia-75.webp
 
 [Script]
-# 点歌解析 - 严格匹配域名
-http-response ^https?:\/\/wyydg\.com\/ script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/wyydg.js, requires-body=true, tag=黄白点歌
+# 点歌解析
+http-response ^https?:\/\/wyydg\.com\?name= script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/wyydg.js, requires-body=true, tag=黄白点歌
 
-# 网易云 VIP Cookie 抓取
+# 网易云 Cookie 抓取
 http-request ^https:\/\/interface\d?\.music\.163\.com\/eapi\/vipauth\/app\/memberlogo\/mypage\/query script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/wyyGetCookie.js, requires-body=false, tag=网易云Cookie
 
 [MITM]
-# 严格限定域名，不使用星号通配符
+# 确保域名完全匹配
 hostname = wyydg.com, interface3.music.163.com, interface.music.163.com
