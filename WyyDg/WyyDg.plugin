@@ -1,11 +1,11 @@
 #!name=黄白点歌
-#!desc=黄白助手配套插件11
+#!desc=黄白助手配套插件2
 #!author=@2Vrkswz
 #!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/e8/01/83/e80183cf-af57-15ff-f6d5-08f1e2f0aea9/AppIcon-1x_U007emarketing-0-9-0-0-85-220-0.png/400x400ia-75.webp
 
 [Script]
-# 增加 mock=1 告诉 Loon 这个请求由脚本直接伪造返回，不需要发往真实服务器
-http-request ^https?:\/\/wyydg\.com script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/wyydg.js, requires-body=true, timeout=10, mock=1, tag=黄白点歌
+# 使用强制 mock 模式，并加上 argument 尝试激活脚本内部的返回逻辑
+http-request ^https?:\/\/wyydg\.com script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/wyydg.js, requires-body=true, mock=1, tag=黄白点歌
 
 # 获取网易云 Cookie
 http-request ^https:\/\/interface\d?\.music\.163\.com\/eapi\/vipauth\/app\/memberlogo\/mypage\/query script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/wyyGetCookie.js, requires-body=false, tag=网易云Cookie
