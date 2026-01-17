@@ -1,16 +1,15 @@
-#!name=黄白点歌调试版
-#!desc=如果日志还是不显示，请检查设置-更多设置-跳过代理
+#!name=黄白点歌
+#!desc=黄白助手配套插件
 #!author=@2Vrkswz
-
-[Rule]
-DOMAIN,wyydg.com,PROXY
+#!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/e8/01/83/e80183cf-af57-15ff-f6d5-08f1e2f0aea9/AppIcon-1x_U007emarketing-0-9-0-0-85-220-0.png/400x400ia-75.webp
 
 [Script]
-# 换成最简单的模糊匹配
-http-response wyydg.com script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/wyydg.js, requires-body=true, tag=黄白点歌
+# 精确匹配域名，避免搜索链接干扰
+http-response ^https?:\/\/wyydg\.com script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/wyydg.js, requires-body=true, tag=黄白点歌
 
-# 抓取Cookie
-http-request music.163.com/eapi/vipauth/app/memberlogo/mypage/query script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/wyyGetCookie.js, requires-body=false, tag=网易云Cookie
+# 获取网易云 Cookie
+http-request ^https:\/\/interface\d?\.music\.163\.com\/eapi\/vipauth\/app\/memberlogo\/mypage\/query script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/wyyGetCookie.js, requires-body=false, tag=网易云Cookie
 
 [MITM]
-hostname = wyydg.com, interface*.music.163.com, *.music.163.com
+# 必须包含这个域名
+hostname = wyydg.com, interface*.music.163.com
