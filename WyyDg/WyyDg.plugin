@@ -1,19 +1,20 @@
-#!name=黄白助手 · 网易云点歌（Loon 正确版）
-#!desc=wyydg 点歌解析 + 网易云 VIP Cookie 获取（严格按 Loon 官方模型）
-#!icon=https://raw.githubusercontent.com/2Vrkswz/My_Loon_Plugins-ScriptHub/main/Icon/wyy.png
+#!name=网易云音乐 点歌 & Cookie 抓取（Loon 官方语法）
+#!desc=基于原始 wyydg + wyyGetCookie 脚本，严格按 Loon 官方语法编写
+#!icon=https://raw.githubusercontent.com/id77/QuantumultX/master/Icon/wyy.png
 
 [Plugin Option]
 enable_wyy_cookie = false
 
-
 [Rule]
+# -------------------
+# 网易云点歌解析
+# -------------------
+SCRIPT,https:\/\/wyydg\.com,https://raw.githubusercontent.com/id77/QuantumultX/master/Script/wyydg.js
 
-# wyydg 点歌解析（response body）
-SCRIPT,https:\/\/wyydg\.com,https://raw.githubusercontent.com/2Vrkswz/My_Loon_Plugins-ScriptHub/main/WyyDg/WyyDg.js
-
-# 网易云 VIP Cookie 获取（request）
-SCRIPT,https:\/\/interface3\.music\.163\.com\/eapi\/vipauth\/app\/memberlogo\/mypage\/query,https://raw.githubusercontent.com/2Vrkswz/My_Loon_Plugins-ScriptHub/main/WyyDg/wyy_cookie.js,enabled={{{enable_wyy_cookie}}}
-
+# -------------------
+# 网易云 VIP Cookie 抓取（开关控制）
+# -------------------
+SCRIPT,https:\/\/interface3\.music\.163\.com\/eapi\/vipauth\/app\/memberlogo\/mypage\/query,https://raw.githubusercontent.com/id77/QuantumultX/master/Script/wyyGetCookie.js,enabled={{{enable_wyy_cookie}}}
 
 [MITM]
 hostname = wyydg.com, interface3.music.163.com
