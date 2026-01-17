@@ -1,13 +1,18 @@
-#!name=黄白点歌 (Loon 适配版)
-#!desc=适配黄白助手点歌接口 https://wyydg.com?name=
-#!author=@2Vrkswz
+#!name=黄白点歌 (Loon 兼容版)
+#!desc=修复 wyydg.com 走策略及 0B 问题
 
 [Script]
-# 核心修正：使用 mock 模式，强制 Loon 在本地生成响应包，不再发往香港或任何远端服务器
-http-request ^https?:\/\/wyydg\.com script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/wyydg.js, requires-body=true, mock=1, tag=黄白点歌
+# 1. 强制使用 http-response，并将域名匹配改为关键词以提高优先级
+# 2. 移除 mock=1，改用 requires-body=true
+http-response wyydg.com script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/wyydg.js, requires-body=true, tag=黄白点歌
 
 # 获取网易云 Cookie
 http-request ^https:\/\/interface\d?\.music\.163\.com\/eapi\/vipauth\/app\/memberlogo\/mypage\/query script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/wyyGetCookie.js, requires-body=false, tag=网易云Cookie
+
+[Rule]
+# 核心修正：强制拦截 wyydg.com，不让它走 FINAL 或香港策略
+# REJECT-DICT 会返回一个 200 状态码的空 JSON，这能给脚本提供“温床”
+DOMAIN,wyydg.com,REJECT-DICT
 
 [MITM]
 hostname = wyydg.com, interface*.music.163.com
