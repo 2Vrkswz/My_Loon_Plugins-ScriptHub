@@ -1,34 +1,19 @@
-#!name=黄白助手 · 网易云点歌 & VIP Cookie（Loon）
-#!desc=wyydg 点歌解析 + 可选开启网易云 VIP Cookie 抓取（ScriptHub Loon 版）
+#!name=黄白助手 · 网易云点歌（Loon 正确版）
+#!desc=wyydg 点歌解析 + 网易云 VIP Cookie 获取（严格按 Loon 官方模型）
 #!icon=https://raw.githubusercontent.com/2Vrkswz/My_Loon_Plugins-ScriptHub/main/Icon/wyy.png
 
-# =========================
-# 插件选项
-# =========================
 [Plugin Option]
-# 是否开启网易云 VIP Cookie 抓取
-# 使用方法：
-# 1. 设为 true
-# 2. 打开网易云音乐 App
-# 3. 进入「我的 → 会员中心」下拉刷新
-# 4. 提示获取成功后关闭此开关
 enable_wyy_cookie = false
 
 
-# =========================
-# 重写规则
-# =========================
-[Rewrite]
+[Rule]
 
-# -------- wyydg 点歌解析（始终开启）--------
-^https:\/\/wyydg\.com url script-response-body https://raw.githubusercontent.com/2Vrkswz/My_Loon_Plugins-ScriptHub/main/WyyDg/WyyDg.js
+# wyydg 点歌解析（response body）
+SCRIPT,https:\/\/wyydg\.com,https://raw.githubusercontent.com/2Vrkswz/My_Loon_Plugins-ScriptHub/main/WyyDg/WyyDg.js
 
-# -------- 网易云 VIP Cookie 抓取（开关控制）--------
-^https:\/\/interface3\.music\.163\.com\/eapi\/vipauth\/app\/memberlogo\/mypage\/query url script-request https://raw.githubusercontent.com/2Vrkswz/My_Loon_Plugins-ScriptHub/main/WyyDg/wyy_cookie.js, enabled={{{enable_wyy_cookie}}}
+# 网易云 VIP Cookie 获取（request）
+SCRIPT,https:\/\/interface3\.music\.163\.com\/eapi\/vipauth\/app\/memberlogo\/mypage\/query,https://raw.githubusercontent.com/2Vrkswz/My_Loon_Plugins-ScriptHub/main/WyyDg/wyy_cookie.js,enabled={{{enable_wyy_cookie}}}
 
 
-# =========================
-# MITM
-# =========================
 [MITM]
 hostname = wyydg.com, interface3.music.163.com
