@@ -12,4 +12,4 @@ http-response ^https?:\/\/.*wyydg\.com script-path=https://raw.githubusercontent
 http-request ^https:\/\/interface3\.music\.163\.com\/eapi\/vipauth\/app\/memberlogo\/mypage\/query script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/Script/wyyGetCookie.js, requires-body=false, tag=网易云Cookie
 
 [MITM]
-hostname = *.wyydg.com, interface3.music.163.com
+hostname = wyydg.com, interface3.music.163.com
