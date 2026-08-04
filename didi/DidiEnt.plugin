@@ -1,0 +1,12 @@
+#!name=滴滴企业版去广告(首页&小福包)
+#!desc=移除滴滴企业版首页活动Banner及小福包
+#!author=YourName
+#!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Didi.png
+
+[MITM]
+# 添加我们需要解密的域名
+hostname = eos-marketing.es.xiaojukeji.com
+
+[Script]
+# 匹配我们刚才找到的批量拉取活动的接口
+http-response ^https?:\/\/eos-marketing\.es\.xiaojukeji\.com\/api\/eos\/promotion\/batchList\/v1 script-path=didi_home.js, requires-body=true, timeout=10
