@@ -1,7 +1,7 @@
 #!name=滴滴企业版去广告
 #!desc=移除滴滴企业版首页活动Banner及底部小福包按钮
 #!author=ZaneWang
-#!icon=https://github.com/2Vrkswz/Loon-Icons/blob/main/icons/didi_vstecs.png
+#!icon=https://raw.githubusercontent.com/2Vrkswz/My_Loon_Plugins-ScriptHub/main/didi/didi_enterprise.png
 
 [MITM]
 # 添加我们需要解密的域名
